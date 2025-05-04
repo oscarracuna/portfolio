@@ -4,19 +4,30 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+  "os"
 
-	"github.com/oscarracuna/portfolio/pkg/config"
+	"github.com/joho/godotenv"
+
+  "github.com/oscarracuna/portfolio/pkg/config"
 	"github.com/oscarracuna/portfolio/pkg/handlers"
 	"github.com/oscarracuna/portfolio/pkg/render"
 )
 
 // TODO: add terminal-looking flexbox for the whoami
-const (
-	portNumber = "localhost:8881"
-)
+
 
 func main() {
-	var app config.AppConfig
+  err := godotenv.Load()
+  if err != nil {
+    log.Fatal("Unable to load .env file.")
+  }
+
+  portNumber := os.Getenv("PORT")
+  if portNumber == "" {
+    log.Fatal("Unable to find a port inside .env file.")
+  }
+  
+  var app config.AppConfig
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
