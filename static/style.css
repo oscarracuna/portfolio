@@ -1,0 +1,89 @@
+/* A monochrome manual page. System fonts; no frontend dependencies. */
+:root {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --text: #ededed;
+  --muted: #aaa;
+  --line: #343434;
+  --mono: "Liberation Mono", "DejaVu Sans Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font: 14px/1.8 var(--mono);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #fff; color: #000; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { color: #fff; }
+a:focus-visible { outline: 1px solid #fff; outline-offset: 5px; }
+p, h1, h2, h3, pre { margin: 0; }
+.page { width: min(1056px, calc(100% - 80px)); margin: 0 auto; }
+
+.manual-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0 18px;
+  border-bottom: 1px solid var(--text);
+  font-size: 11px;
+}
+.manual-header a { text-decoration: none; }
+.manual-header > span:nth-child(2) { color: var(--muted); }
+.layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 52px; }
+
+/* The index stays in view without turning into an application sidebar. */
+.sidebar { align-self: start; position: sticky; top: 34px; padding-top: 55px; }
+.index-label { color: var(--muted); font-size: 10px; letter-spacing: .12em; margin-bottom: 14px; }
+.sidebar nav a { display: block; width: fit-content; text-decoration: none; line-height: 2.4; }
+.sidebar nav a::before { content: "├─ "; color: #777; }
+.sidebar nav a:last-child::before { content: "└─ "; }
+.sidebar nav a:hover { text-decoration: underline; }
+.tux { margin: 48px 0 15px; font: 12px/1.4 var(--mono); color: #bcbcbc; }
+.handle { color: var(--muted); font-size: 10px; }
+
+main { min-width: 0; padding-top: 50px; }
+.identity { padding-bottom: 42px; }
+.command { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+h1 { font-size: clamp(27px, 3.4vw, 40px); font-weight: 500; line-height: 1.3; letter-spacing: -1.5px; }
+.role { color: var(--muted); margin-top: 10px; font-size: 12px; }
+section { border-top: 1px solid var(--line); padding: 26px 0 34px; scroll-margin-top: 8px; }
+h2 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 18px; }
+.section-body { padding-left: 24px; }
+.section-body > p + p { margin-top: 14px; }
+.section-body p { color: #bcbcbc; max-width: 72ch; }
+.entry + .entry { margin-top: 25px; }
+.lab-notes { margin: 10px 0 0; padding-left: 20px; color: #bcbcbc; }
+.lab-notes li + li { margin-top: 6px; }
+h3 { font-size: 14px; font-weight: 700; line-height: 1.6; margin-bottom: 6px; }
+h3 a { text-decoration: none; }
+h3 a:hover { text-decoration: underline; }
+.external { font-weight: 400; color: var(--muted); margin-left: 5px; }
+.address { display: inline-block; color: var(--muted); font-size: 11px; margin-top: 7px; overflow-wrap: anywhere; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 14px 30px; }
+.manual-footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--text); padding: 17px 0 26px; margin-top: 28px; color: var(--muted); font-size: 10px; }
+.manual-footer a { text-decoration: none; white-space: nowrap; }
+.manual-footer a:hover { text-decoration: underline; }
+.skip-link { position: fixed; top: -70px; left: 20px; background: #fff; color: #000; padding: 8px 14px; z-index: 2; }
+.skip-link:focus { top: 15px; }
+
+@media (max-width: 760px) {
+  .page { width: calc(100% - 40px); }
+  .manual-header { font-size: 10px; }
+  .manual-header > span:last-child { display: none; }
+  .layout { display: block; }
+  .sidebar { position: static; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .sidebar nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  .sidebar nav a { font-size: 12px; line-height: 1.8; text-decoration: underline; }
+  .sidebar nav a::before, .index-label, .tux, .handle { display: none; }
+  main { padding-top: 34px; }
+  .identity { padding-bottom: 30px; }
+  h1 { letter-spacing: -1px; }
+  section { padding: 23px 0 28px; }
+  .section-body { padding-left: 0; }
+  body { font-size: 13px; }
+}

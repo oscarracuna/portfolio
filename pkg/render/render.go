@@ -2,10 +2,10 @@ package render
 
 import (
 	"bytes"
+	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
-	"text/template"
 
 	"github.com/oscarracuna/portfolio/pkg/config"
 	"github.com/oscarracuna/portfolio/pkg/models"
@@ -30,22 +30,35 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	if app.UseCache {
 		tc = app.TemplateCache
 	} else {
-		tc, _ = CreateTemplateCache()
+		var err error
+		tc, err = CreateTemplateCache()
+		if err != nil {
+			log.Printf("load templates: %v", err)
+			http.Error(w, "Unable to render page", http.StatusInternalServerError)
+			return
+		}
 	}
 
 	// get requested template from cache
 	t, ok := tc[tmpl]
 	if !ok {
-		log.Fatal("Unable to get template from cache")
+		log.Printf("template not found: %s", tmpl)
+		http.Error(w, "Unable to render page", http.StatusInternalServerError)
+		return
 	}
 
 	buf := new(bytes.Buffer)
 
 	td = AddDefaultData(td)
 
-	_ = t.Execute(buf, td)
+	if err := t.Execute(buf, td); err != nil {
+		log.Printf("execute template %s: %v", tmpl, err)
+		http.Error(w, "Unable to render page", http.StatusInternalServerError)
+		return
+	}
 
 	// render the template
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	_, err := buf.WriteTo(w)
 	if err != nil {
 		log.Println(err)

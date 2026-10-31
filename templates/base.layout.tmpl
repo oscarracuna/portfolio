@@ -1,17 +1,17 @@
-{{define "base"}}
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Portfolio - Oscar R Acuña</title>
-
-      {{block "css" .}}
-      {{end}}
-
-    {{block "content" .}}
-
-    {{end}}
-
+{{define "base"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Oscar R Acuña. IT operations, Linux administration, Go projects, and technical support experience.">
+  <title>Oscar R Acuña — IT Operations &amp; Linux</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{block "content" .}}{{end}}
+</body>
+</html>
 {{end}}
-

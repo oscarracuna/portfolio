@@ -1,14 +1,98 @@
 {{template "base" .}}
-
 {{define "content"}}
-<body>
-  <header>
-    <h1>IT and Cybersecurity</h1>
-  </header>
-<body>
+  <div class="page">
+    <header class="manual-header">
+      <a href="#" aria-label="Oscar R Acuña, home">OSCAR(1)</a>
+      <span>Personal manual</span>
+      <span aria-hidden="true">OSCAR(1)</span>
+    </header>
 
-<section> 
-<h2>whoami</h2>
-</section>
+    <div class="layout">
+      <aside class="sidebar">
+        <nav aria-label="Contents">
+          <p class="index-label">CONTENTS</p>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <pre class="tux" aria-hidden="true">   .--.
+  |o_o |
+  |:_/ |
+ //   \ \
+(|     | )
+/'\_   _/`\
+\___)=(___/</pre>
+        <p class="handle">~/rhaenesis</p>
+      </aside>
 
+      <main id="main">
+        <div class="identity">
+          <p class="command" aria-hidden="true">$ man oscar</p>
+          <h1>Oscar R Acuña</h1>
+          <p class="role">IT operations / Linux / Go</p>
+        </div>
+
+        <section id="about" aria-labelledby="about-title">
+          <h2 id="about-title">About</h2>
+          <div class="section-body">
+            <p>I work in technical support and IT operations. Outside work, I run a Linux lab on Proxmox and build small tools and web applications in Go.</p>
+            <p>I’m studying Linux administration and RHCSA topics.</p>
+          </div>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <div class="section-body">
+            <article class="entry">
+              <h3><a href="https://game.tuxsudo.xyz/">Tuxsudo <span class="external" aria-hidden="true">↗</span></a></h3>
+              <p>A browser game for RHCSA study, with timed Linux command drills, hints, and streaks.</p>
+              <a class="address" href="https://game.tuxsudo.xyz/">game.tuxsudo.xyz</a>
+            </article>
+            <article class="entry">
+              <h3><a href="https://rhaenesis.com/">Rhaenesis Solutions <span class="external" aria-hidden="true">↗</span></a></h3>
+              <p>My IT services project in Ciudad Juárez. A bilingual Go and HTMX website for technical support, networks, server management, hosting, and recovery planning. Deployment tooling includes systemd, health checks, and binary rollback.</p>
+              <a class="address" href="https://rhaenesis.com/">rhaenesis.com</a>
+            </article>
+            <article class="entry">
+              <h3>Homelab</h3>
+              <p>A Proxmox lab with Linux VMs and LXC containers for self-hosting and testing my Go applications.</p>
+              <ul class="lab-notes">
+                <li>Services: Samba, Jellyfin, Grafana, and my Go audiobook player.</li>
+                <li>Administration: Debian and CentOS, LVM thin-pool recovery, storage migrations, backups, and GPU troubleshooting.</li>
+                <li>Security: Wazuh agents for monitoring and Cloudflare Tunnels for selected services.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="experience" aria-labelledby="experience-title">
+          <h2 id="experience-title">Experience</h2>
+          <div class="section-body">
+            <article class="entry">
+              <h3>Technical Support &amp; Communications Supervisor</h3>
+              <p>Support across 12 manufacturing plants. Windows, IT assets, vendor coordination, documentation, PowerShell, and endpoint security incidents.</p>
+            </article>
+            <article class="entry">
+              <h3>Enterprise support</h3>
+              <p>Global support for 5,000+ endpoints and 15,000+ users. Active Directory, Microsoft 365, ERP systems, and SOC-escalated alerts.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact</h2>
+          <div class="section-body contact-links">
+            <a href="https://www.linkedin.com/in/oscar-r-acuna/">LinkedIn <span class="external" aria-hidden="true">↗</span></a>
+            <a href="https://github.com/oscarracuna">GitHub <span class="external" aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="manual-footer">
+      <span>Oscar R Acuña</span>
+      <a href="#">Back to top ↑</a>
+    </footer>
+  </div>
 {{end}}
